@@ -12,15 +12,27 @@
     <meta property="og:url" content="colevanophem.github.io" />
     <meta property="og:locale" content="en_US">
     <!-- <meta property="og:image" content="http://colevanophem.github.io/test.jpg" /> -->
-    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
-
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    
     <link rel="stylesheet" href="style.css">
 
     <title>Cole VanOphem CV</title>
 </head>
 
 <body>
-    <h1>Cole VanOphem</h1>
+    <header class="hero">
+        <div class="container">
+            <div class="hero-title-container">
+                <h1 class="hero-title">Cole VanOphem</h1>
+                <p class="hero-title" data-overlay aria-hidden="true"></p>
+            </div>
+        </div>
+        <div class="canvas-container">
+            <canvas id="canv" width="32" height="32"></canvas>
+            <script type="module" src="/main.js"></script>
+        </div>
+    </header>
+    
     <main>
         <section id="about">
             <h2>About</h2>
@@ -36,7 +48,7 @@
             <h2>🎓 Education</h2>
             <div class="cv-grid-container">
                 <div class="cv-grid-item">
-                    August 2022 - May 2025<br>
+                    August 2022 - present<br>
                     Ann Arbor, MI
                 </div>
                 <div>
@@ -51,7 +63,7 @@
                 </div>
                 <div>
                     <strong>Michigan State University</strong><br>
-                    <p>Honors Multivariable Calculus, Physics for Scientists and Engineers II, Statistics for Scientists and Engineers, Discrete Structures in Computer Science</p>
+                    <p>Honors Multivariable Calculus, Discrete Mathematics, Physics: Electricity and Magnetism, Statistics for Scientists and Engineers</p>
                     <p>MSU Campus Band, FIRST at MSU</p>
                     <p>Dean's List Fall 2021, Spring 2022</p>
                 </div>
@@ -74,6 +86,38 @@
         </section>
         <section id="projects">
             <h2>💻 Projects</h2>
+            <div class="cv-grid-container">
+                <div class="cv-grid-item">
+                    December 2022<br>
+                    <a rel="link" href="https://github.com/ColeVanOphem/eecs280-p5">Private GitHub Repo</a>
+                </div>
+                <div>
+                    <strong>ML-Based Piazza Post Classifier</strong><br>
+                    <p>Developed a simplified Multivariate Bernoulli Naive Bayes Classifier in C++ to predict the topic of Piazza forum posts</p>
+                    <p>Trained on data set of over 11,000 posts and achieved over 87% prediction accuracy</p>
+                    <p>Implemented binary search tree and map data structures to store data during training process</p>
+                </div>
+                <div class="cv-grid-item">
+                    October 2022<br>
+                    <a rel="link" href="https://github.com/ColeVanOphem/eecs280-p3">Private GitHub Repo</a>
+                </div>
+                <div>
+                    <strong>Euchre Simulator</strong><br>
+                    <p>Built a simulator for playing euchre, a popular card game in Michigan</p>
+                    <p>Utilized object-oriented design in C++ and tested code using a lightweight testing framework</p>
+                    <p>Created an AI to play the game against a human player</p>
+                </div>
+                <div class="cv-grid-item">
+                    September 2022<br>
+                    <a rel="link" href="https://github.com/ColeVanOphem/eecs280-p2">Private GitHub Repo</a>
+                </div>
+                <div>
+                    <strong>Seam Carving-Based Image Resizing</strong><br>
+                    <p>Developed application to intelligently resize images by algorithmically selecting pixels to be removed</p>
+                    <p>Implemented a seam carving algorithm in C++ using cost matrices to detect and remove the least important pixels</p>
+                    <p></p>
+                </div>
+            </div>
         </section>
         <section id="skills">
             <h2>🛠 Skills</h2>
@@ -99,6 +143,7 @@
             </div>
         </section>
     </main>
+
     <footer>
 
     </footer>
