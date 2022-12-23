@@ -103,7 +103,7 @@ canvas {
     z-index: -1;
     inset: 0;
     height: 50vh;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 37%, 0% 100%);
 }
 
 /*
