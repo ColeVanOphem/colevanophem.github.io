@@ -114,3 +114,12 @@ canvas {
 ::-webkit-scrollbar {
     display: none;
 }
+
+footer > p {
+    margin: 0 auto;
+    max-width: 45em;
+    padding: 1em;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+}
