@@ -7,7 +7,7 @@
     <meta name="description" content="About Cole VanOphem.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Metadata for Open Graph Protocol -->
-    <meta property="og:title" content="CV" />
+    <meta property="og:title" content="Cole VanOphem" />
     <meta property="og:site_name" content="Cole VanOphem" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="colevanophem.github.io" />
@@ -17,11 +17,21 @@
     
     <link rel="stylesheet" href="style.css">
 
-    <title>Cole VanOphem CV</title>
+    <title>Cole VanOphem</title>
 </head>
 
 <body>
-    <header class="hero">
+    <nav class="navbar">
+        <ul class="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header class="hero" id="home">
         <div class="container">
             <div class="hero-title-container">
                 <h1 class="hero-title">Cole VanOphem</h1>
@@ -37,111 +47,21 @@
     <main>
         <section id="about">
             <h2>About</h2>
-            <p>
-                Hello! My name is Cole. I am a computer science student at the University of Michigan.
-                <br>
-                Currently, I am interested in software engineering roles in cybersecurity and ML / AI.
-                <br>
-                Seeking internships for Summer 2023.
-            </p>
         </section>
         <section id="education">
             <h2>🎓 Education</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    August 2022 - present<br>
-                    Ann Arbor, MI
-                </div>
-                <div>
-                    <strong>University of Michigan</strong><br>
-                    <i style="font-size: smaller">Bachelor of Science, Computer Science</i>
-                    <p>Programming and Introductory Data Structures, Data Structures and Algorithms, 
-                        Foundations of Computer Science, Second-Year Spanish</p>
-                </div>
-                <div class="cv-grid-item">
-                    August 2021 - May 2022<br>
-                    East Lansing, MI
-                </div>
-                <div>
-                    <strong>Michigan State University</strong><br>
-                    <p>Honors Multivariable Calculus, Discrete Mathematics, Physics: Electricity and Magnetism, Statistics for Scientists and Engineers</p>
-                    <p>MSU Campus Band, FIRST at MSU</p>
-                    <p>Dean's List Fall 2021, Spring 2022</p>
-                </div>
-            </div>
         </section>
         <section id="experience">
             <h2>👔 Experience</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    May 2022 - August 2022<br>
-                    Pontiac, MI
-                </div>
-                <div>
-                    <strong>Amazon Fulfillment Center Associate</strong><br>
-                    <p>Fulfilled orders in the picking process path, removing items from robots with speed and accuracy, and placing items into totes for sorting</p>
-                    <p>Collaborated with colleagues to solve problems with station systems</p>
-                    <p>Consistently exceeded capacity and accuracy requirements to fulfill orders with attention to quality and safety</p>
-                </div>
-            </div>
         </section>
         <section id="projects">
             <h2>💻 Projects</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    December 2022<br>
-                    <a rel="link" href="https://github.com/ColeVanOphem/eecs280-p5">Private GitHub Repo</a>
-                </div>
-                <div>
-                    <strong>ML-Based Piazza Post Classifier</strong><br>
-                    <p>Developed a simplified Multivariate Bernoulli Naive Bayes Classifier in C++ to predict the topic of Piazza forum posts</p>
-                    <p>Trained on data set of over 11,000 posts and achieved over 87% prediction accuracy</p>
-                    <p>Implemented binary search tree and map data structures to store data during training process</p>
-                </div>
-                <div class="cv-grid-item">
-                    October 2022<br>
-                    <a rel="link" href="https://github.com/ColeVanOphem/eecs280-p3">Private GitHub Repo</a>
-                </div>
-                <div>
-                    <strong>Euchre Simulator</strong><br>
-                    <p>Built a simulator for playing euchre, a popular card game in Michigan</p>
-                    <p>Utilized object-oriented design in C++ and tested code using a lightweight testing framework</p>
-                    <p>Created an AI to play the game against a human player</p>
-                </div>
-                <div class="cv-grid-item">
-                    September 2022<br>
-                    <a rel="link" href="https://github.com/ColeVanOphem/eecs280-p2">Private GitHub Repo</a>
-                </div>
-                <div>
-                    <strong>Seam Carving-Based Image Resizing</strong><br>
-                    <p>Developed application to intelligently resize images by algorithmically selecting pixels to be removed</p>
-                    <p>Implemented a seam carving algorithm in C++ using cost matrices to detect and remove the least important pixels</p>
-                    <p></p>
-                </div>
-            </div>
         </section>
         <section id="skills">
             <h2>🛠 Skills</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    Languages
-                </div>
-                <p>
-                    C++, C#, HTML, CSS, Java
-                </p>
-                <div class="cv-grid-item">
-                    Frameworks & Libraries
-                </div>
-                <p>
-                    
-                </p>
-                <div class="cv-grid-item">
-                    Tools
-                </div>
-                <p>
-                    Visual Studio Code, Git
-                </p>
-            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
         </section>
     </main>
 

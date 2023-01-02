@@ -1,6 +1,6 @@
 :root {
     --background-color: #ffffff;
-    --foreground-color: #16161d;
+    --foreground-color: #3a3a3a;
     --border-color: #cccccc;
 }
 html {
@@ -15,6 +15,7 @@ body {
     color: var(--foreground-color);
     line-height: 1.5;
     background-color: var(--background-color);
+    text-decoration: none;
 }
 
 main {
@@ -50,6 +51,43 @@ h2 {
 
 /*
  *
+ * Navbar Styling
+ *
+ */
+
+.navbar {
+    width: 80%;
+    max-width: 45em;
+    margin: 0 auto;
+    padding: 1em;
+
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.navbar .menu li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navbar .menu li a {
+    color: var(--foreground-color);
+    font-size: 1.25em;
+    font-weight: 500;
+    margin-left: 1em;
+    text-decoration: none;
+}
+
+.navbar .menu li a:hover {
+    color: var(--background-color);
+}
+
+
+/*
+ *
  * Gradient Hero Text
  *
  */
@@ -79,7 +117,7 @@ canvas {
 }
 
 .hero-title {
-    color: #3a3a3a;
+    color: var(--foreground-color);
     mix-blend-mode: color-burn;
     line-height: 1.1;
     font-size: 6rem;
