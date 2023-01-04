@@ -59,13 +59,18 @@ h2 {
     width: 80%;
     max-width: 45em;
     margin: 0 auto;
-    padding: 1em;
 
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 10;
+}
+
+.navbar ul {
+    background-color: white;
+    border-radius: 100px;
+    
 }
 
 .navbar .menu li {
@@ -82,7 +87,7 @@ h2 {
 }
 
 .navbar .menu li a:hover {
-    color: var(--background-color);
+    color: var(--border-color);
 }
 
 
