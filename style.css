@@ -56,21 +56,25 @@ h2 {
  */
 
 .navbar {
-    width: 80%;
     max-width: 45em;
     margin: 0 auto;
+    padding-left: 1em;
 
     position: fixed;
+    z-index: 10;
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    z-index: 10;
+    justify-items: space-around;
+
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    border-radius: 2em;
 }
 
-.navbar ul {
-    background-color: white;
-    border-radius: 100px;
-    
+.menu {
+    padding: 0;
 }
 
 .navbar .menu li {
@@ -83,6 +87,7 @@ h2 {
     font-size: 1.25em;
     font-weight: 500;
     margin-left: 1em;
+    margin-right: 1em;
     text-decoration: none;
 }
 
@@ -157,3 +162,10 @@ canvas {
 ::-webkit-scrollbar {
     display: none;
 }
+
+
+/*
+ *
+ * Contact Info
+ *
+ */
