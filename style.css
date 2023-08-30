@@ -48,6 +48,10 @@ h2 {
     font-size: smaller;
 }
 
+#about {
+    padding-bottom: 1.5em;
+}
+
 /*
  *
  * Gradient Hero Text
@@ -108,13 +112,19 @@ canvas {
 
 /*
  *
- * Custom Scrollbars
+ * No Scrollbars
  *
  */
 ::-webkit-scrollbar {
     display: none;
 }
 
+
+/*
+ *
+ * Construction footer
+ *
+ */
 footer > p {
     margin: 0 auto;
     max-width: 45em;
