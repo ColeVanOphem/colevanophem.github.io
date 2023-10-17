@@ -2,6 +2,7 @@
     --background-color: #ffffff;
     --foreground-color: #3a3a3a;
     --border-color: #cccccc;
+    --accent-color: #ff0000;
 }
 html {
     -webkit-text-size-adjust: 100%;
@@ -55,31 +56,40 @@ h2 {
  *
  */
 
-.navbar {
-    max-width: 45em;
-    margin: 0 auto;
-    padding-left: 1em;
-
+nav {
+    height: 100%;
+    min-height: 12rem;
+    max-width: 10em;
+    
+    top: 0;
+    right: 0;
+    padding: 35vh 0 0 0;
+    
     position: fixed;
     z-index: 10;
 
     display: flex;
     align-items: center;
-    justify-items: space-around;
+    justify-items: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
 
     background-color: transparent;
     -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(12px);
-    border-radius: 2em;
+    backdrop-filter: blur(6px);
 }
 
-.menu {
+.menu, .nav-links {
+    margin: 0;
     padding: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .navbar .menu li {
     list-style: none;
     display: inline-block;
+    margin: 0.5rem 0;
 }
 
 .navbar .menu li a {
@@ -93,6 +103,7 @@ h2 {
 
 .navbar .menu li a:hover {
     color: var(--border-color);
+    text-decoration: wavy underline;
 }
 
 
@@ -156,7 +167,7 @@ canvas {
 
 /*
  *
- * Custom Scrollbars
+ * No Scrollbars
  *
  */
 ::-webkit-scrollbar {
@@ -169,3 +180,43 @@ canvas {
  * Contact Info
  *
  */
+
+#contact > h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1em;
+}
+
+ .icon-row {
+    display: flex;
+    height: 5rem;
+    align-items: center;
+ }
+
+.icon {
+    font-size: 2rem;
+    color: var(--foreground-color);
+    min-width: 2rem;
+}
+
+ .info {
+    margin-left: 2rem;
+ }
+
+ .head {
+    font-weight: 500;
+ }
+
+
+ /*
+ *
+ * Construction footer
+ *
+ */
+footer > p {
+    margin: 0 auto;
+    max-width: 45em;
+    padding: 1em;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+}
