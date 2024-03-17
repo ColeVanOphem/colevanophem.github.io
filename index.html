@@ -6,281 +6,96 @@
     <meta name="author" content="Cole VanOphem">
     <meta name="description" content="About Cole VanOphem.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- Metadata for Open Graph Protocol -->
     <meta property="og:title" content="Cole VanOphem" />
     <meta property="og:site_name" content="Cole VanOphem" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="colevanophem.github.io" />
     <meta property="og:locale" content="en_US">
-    <!-- <meta property="og:image" content="http://colevanophem.github.io/test.jpg" /> -->
+
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/583ef7739e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+ 
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
 
+    <script src="index.js"></script>
+
     <title>Cole VanOphem</title>
 </head>
+
 <body>
-    <header class="hero" id="home">
-        <div class="container">
-            <div class="hero-title-container">
-                <h1 class="hero-title">Cole VanOphem</h1>
-                <p class="hero-title" data-overlay aria-hidden="true"></p>
+    <header>
+        <nav>
+            <div>
+                <!-- <img src="favicon.png" alt="Cole VanOphem"> -->
+                <a href="#" style="font-weight: bold;">COLE</a>
             </div>
-        </div>
-        <div class="canvas-container">
-            <canvas id="canv" width="32" height="32"></canvas>
-            <script type="module" src="/main.js"></script>
-        </div>
+            <div>    
+                <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+                <a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a>
+                <a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
+                <a href="#projects"><i class="fa-solid fa-laptop-code"></i> Projects</a>
+            </div>
+        </nav>
     </header>
-    <nav class="navbar animate__animated animate__fadeInRight">
-        <div class="nav-links">
-            <ul class="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
     <main>
+        <section class="hero">
+            <canvas id="hero-background"></canvas>
+            <div class="hero-text">
+                <p>Hello, my name is</p>
+                <h1>Cole VanOphem</h1>
+                <p>and I'm a software engineer.</p>
+            </div>
+        </section>
         <section id="about">
-            <p>Hello!</p>
-            <p>My name is Cole. I am a computer science student at the University of Michigan.</p>
-            <p>After my time as a Software Engineer Intern at UWM last summer, I am seeking new software engineering opportunities for Summer 2024!</p>
+            <h2>About Me</h2>
+            <p>
+                I'm a software engineer with a passion for creating and developing
+                software. I have experience in full-stack web development, mobile
+                development, and game development. I'm always looking for new
+                opportunities to learn and grow as a developer.
+            </p>
         </section>
         <section id="education">
-            <h2>🎓 Education</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    August 2022 - present<br>
-                    Ann Arbor, MI
-                </div>
-                <div>
-                    <strong>University of Michigan</strong><br>
-                    <i style="font-size: smaller">Bachelor of Science, Computer Science</i>
-                    <p>Programming and Introductory Data Structures, Data Structures and Algorithms,
-                        Foundations of Computer Science, Computer Organization, Web Systems, Second-Year Spanish</p>
-                    <p>Michigan Hackers (Interviewing Team Lead)</p>
-                    <p>University Honors - Fall 2022, Winter 2023</p>
-                </div>
-                <div class="cv-grid-item">
-                    August 2021 - May 2022<br>
-                    East Lansing, MI
-                </div>
-                <div>
-                    <strong>Michigan State University</strong><br>
-                    <i style="font-size: smaller">Computer Science, Mathematics</i>
-                    <p>Honors Multivariable Calculus, Discrete Mathematics, Physics: Electricity and Magnetism,
-                        Statistics for Scientists and Engineers</p>
-                    <p>MSU Campus Band, FIRST at MSU</p>
-                    <p>Dean's List - Fall 2021, Spring 2022</p>
-                </div>
-                <div class="cv-grid-item">
-                    September 2017 - May 2021<br>
-                    Rochester Hills, MI
-                </div>
-                <div>
-                    <strong>Rochester Adams High School</strong><br>
-                    <i style="font-size: smaller">High School Diploma</i>
-                    <p>Rochester Community Schools - Scholar of Highest Distinction</p>
-                    <p>CollegeBoard - AP Scholar with Distinction</p>
-                    <p>AP Calculus BC, AP Physics C, AP Computer Science A, AP English Language and Composition, AP US Government and Politics, AP Human Geography</p>
-                    <p>FIRST Robotics (Programming Team Lead), Model United Nations (Secretary), Marching Band, National Honor Society, Key Club, Clarinet Choir, PTSA </p>
-                    <p>Rochester PTA Council Scholarship Winner</p>
-                    <p>APFIM Underclassman Scholarship Winner</p>
-                </div>
-                <div class="cv-grid-item">
-                    June 2020 - Dec 2020
-                    Rochester Hills, MI
-                </div>
-                <div>
-                    <strong>Oakland University</strong><br>
-                    <i style="font-size: smaller">Computer Science, Mathematics</i>
-                    <p>Dual Enrollment courses during high school</p>
-                </div>
+            <h2>Education</h2>
+            <div>
+                <h3>University of Wisconsin - Madison</h3>
+                <p>Bachelor of Science in Computer Science</p>
+                <p>Graduated May 2024</p>
             </div>
         </section>
         <section id="experience">
-            <h2>👔 Experience</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    May 2023 - Present<br>
-                    Ann Arbor, MI
-                </div>
-                <div>
-                    <strong>Michigan Hackers</strong><br>
-                    <i style="font-size: smaller">Interviewing Team Lead</i>
-                    <p>Mentored students on data structures and algorithms concepts</p>
-                    <p>Presented weekly lab-style content, led coding activities, and ran partner activities for students.</p>
-                </div>
-                <div class="cv-grid-item">
-                    May 2023 - August 2023<br>
-                    Pontiac, MI
-                </div>
-                <div>
-                    <strong>United Wholesale Mortgage</strong><br>
-                    <i style="font-size: smaller">Software Engineer Intern</i>
-                    <p>Embedded in full-time scrum team, participated in daily stand-ups, sprint plannings, and sprint retrospectives</p>
-                    <p>Developed containerized C#, ASP.NET Core microservice to aggregate data from scheduled RESTful API calls</p>
-                    <p>Architected SQL Server data model to store aggregated data via Entity Framework Core</p>
-                    <p>Deployed to Azure via Docker containers and integrated with Orkes Conductor</p>
-                    <p>Processed over 1.48 million data fields per day, making data available for machine learning prediction models</p>
-                    <p>Presented project regularly to product owner, stakeholders, and architects, received and implemented feedback</p>
-                </div>
-                <div class="cv-grid-item">
-                    May 2022 - August 2022<br>
-                    Pontiac, MI
-                </div>
-                <div>
-                    <strong>Amazon</strong><br>
-                    <i style="font-size: smaller">Fulfillment Center Associate</i>
-                    <p>Fulfilled orders in the picking process path, removing items from robots, and placing items into totes for sorting</p>
-                    <p>Consistently exceeded capacity and accuracy requirements to fulfill orders with attention to quality and safety</p>
-                </div>
+            <h2>Experience</h2>
+            <div>
+                <h3>Software Engineer Intern</h3>
+                <p>Company Name</p>
+                <p>May 2023 - August 2023</p>
+                <ul>
+                    <li>Developed a web application using React and Node.js</li>
+                    <li>Worked with a team to develop and maintain a RESTful API</li>
+                    <li>Implemented a CI/CD pipeline using Jenkins</li>
+                </ul>
             </div>
         </section>
         <section id="projects">
-            <h2>💻 Projects</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>PhotoSphere</strong><br>
-                    <p>Developed a social media site that allows users to share photos with others, as well as comment on others’ photos</p>
-                    <p>Implemented RESTful API with Flask and Python to serve pages from 18 endpoints and store data via Sqlite</p>
-                    <p>Created user interface with React and JavaScript, integrated with backend to enable like, comment, post, and account management functionalities. Deployed web app to AWS EC2 instance</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>Travelling Salesman Problem Solver</strong><br>
-                    <p>Designed a program that can calculate approximate and exact solutions to the Travelling Salesman Problem using multiple methods</p>
-                    <p>Implemented a branch and bound algorithm in C++ that calculates optimal TSP solutions for graphs of up to 30 nodes in as little as 10 seconds</p>
-                    <p>Built a polynomial-time TSP estimator using an arbitrary insertion heuristic to be used as a bounding function</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>SQL Clone</strong><br>
-                    <p>Developed a program to emulate a basic relational database using STL containers and algorithms</p>
-                    <p>Implemented a subset of SQL commands, including JOIN and conditional statements</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>Stock Market Simulator</strong><br>
-                    <p>Architected a program to simulate buy and sell orders from multiple traders on multiple stocks in a market</p>
-                    <p>Implemented in C++ using priority queues to match buyers and sellers</p>
-                    <p>Applied multiple data analysis modes to calculate each trader’s and stock’s performance at end of day</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>3D Maze Solver</strong><br>
-                    <p>Devised a program to solve 3-dimensional mazes with multiple types of obstacles</p>
-                    <p>Given a start and end point, uses breadth-first search or depth-first search to find a path through the maze</p>
-                    <p>Utilized C++ STL containers</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>ML-Based Piazza Post Classifier</strong><br>
-                    <p>Created a Multivariate Bernoulli Naive Bayes Classifier in C++ to predict the topic of Piazza forum posts</p>
-                    <p>Trained on data set of over 11,000 posts and achieved over 87% prediction accuracy while classifying posts</p>
-                    <p>Implemented binary search tree and map data structures to store data during training process</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>Euchre Simulator</strong><br>
-                    <p>Built a simulator for playing euchre, a popular card game in Michigan</p>
-                    <p>Utilized object-oriented design in C++ and tested code using a lightweight testing framework</p>
-                    <p>Created an AI to play the game against a human player</p>
-                </div>
-                <div class="cv-grid-item">
-                </div>
-                <div>
-                    <strong>Seam Carving-Based Image Resizing</strong><br>
-                    <p>Developed application to intelligently resize images by algorithmically selecting pixels to be
-                        removed</p>
-                    <p>Implemented a seam carving algorithm in C++ using cost matrices to detect and remove the least
-                        important pixels</p>
-                    <p></p>
-                </div>
-            </div>
-        </section>
-        <section id="skills">
-            <h2>🛠 Skills</h2>
-            <div class="cv-grid-container">
-                <div class="cv-grid-item">
-                    Languages
-                </div>
-                <p>
-                    C/C++, C#, SQL, Python, HTML/CSS, JavaScript
-                </p>
-                <div class="cv-grid-item">
-                    Frameworks & Libraries
-                </div>
-                <p>
-                    ASP.NET Core, EF Core, .NET Core, xUnit, Flask, Sqlite, React
-                </p>
-                <div class="cv-grid-item">
-                    Tools
-                </div>
-                <p>
-                    Git, Docker, Postman, VS Code, Visual Studio, Agile, Scrum
-                </p>
-            </div>
-        </section>
-        <section id="contact">
-            <h2> Contact</h2>
-            <div class="icons">
-                <div class="icon-row">
-                    <i class="icon fa-solid fa-user"></i>
-                    <div class="info">
-                        <div class="head">Name</div>
-                        <div class="subtitle">Cole VanOphem</div>
-                    </div>
-                </div>
-                <div class="icon-row">
-                    <i class="icon fa-solid fa-map-pin"></i>
-                    <div class="info">
-                        <div class="head">Location</div>
-                        <div class="subtitle">Rochester Hills, Michigan</div>
-                    </div>
-                </div>
-                <div class="icon-row">
-                    <i class="icon fa-solid fa-envelope"></i>
-                    <div class="info">
-                        <div class="head">Email</div>
-                        <div class="subtitle">nvano@umich.edu</div>
-                    </div>
-                </div>
-                <div class="icon-row">
-                    <i class="icon fa-brands fa-linkedin"></i>
-                    <div class="info">
-                        <div class="head">LinkedIn</div>
-                        <div class="subtitle"><a href="https://linkedin.com/in/cole-vanophem" target="_blank">cole-vanophem</a></div>
-                    </div>
-                </div>
-                <div class="icon-row">
-                    <i class="icon fa-brands fa-github"></i>
-                    <div class="info">
-                        <div class="head">Name</div>
-                        <div class="subtitle"><a href="https://github.com/ColeVanOphem" target="_blank">ColeVanOphem</a></div>
-                    </div>
-                </div>
+            <h2>Projects</h2>
+            <div>
+                <h3>Project Name</h3>
+                <p>Project Description</p>
+                <p>Technologies Used: React, Node.js, MongoDB</p>
             </div>
         </section>
     </main>
     <footer>
-        <p>🚧 This page is currently being updated. Check back soon for new changes! 🚧</p>
+        <div>
+            <p>&copy; 2024 Cole VanOphem. All rights reserved.</p>
+            <a href="#">Back to top</a>
+        </div>
     </footer>
 </body>
-<!-- ✋ handwritten 🖋️ with ❤️ -->
+
 </html>

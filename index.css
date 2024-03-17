@@ -1,0 +1,145 @@
+:root {
+    --text: #0f1224;
+    --background: #f4f5fb;
+    --primary: #222d72;
+    --secondary: #6c7ee5;
+    --accent: #102dd1;
+    --border: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #dcdff0;
+        --background: #04050a;
+        --primary: #8e99dd;
+        --secondary: #1a2c93;
+        --accent: #304df0;
+        --border: #272727;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+
+    padding-top: 3rem;
+}
+
+a {
+    color: var(--primary);
+}
+
+a:visited {
+    color: var(--primary);
+}
+
+/*
+ * Section Styling
+ */
+section {
+    margin: 0 auto;
+    max-width: 70%;
+    padding: 20px;
+}
+
+/*
+ * Hero Styling
+ */ 
+
+.hero {
+    height: 100vh;
+}
+
+.hero-text {
+    margin-top: 30vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 1
+}
+
+.hero-text > p {
+    font-size: 1.5rem;
+    color: var(--text);
+    margin: 0;
+}
+.hero-text > h1 {
+    margin: 1rem;
+    
+    font-size: 5rem;
+    
+    color: var(--primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* This ensures the canvas stays behind the text */
+}
+
+/*
+ * Navbar Styling
+ */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.4);
+
+    border-bottom: 1px solid var(--border);
+}
+
+nav {
+    margin: 0 auto;
+    max-width: 70%;
+
+    min-height: 2.5rem;
+    
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+nav > div {
+    display: flex;
+    gap: 2rem;
+}
+
+nav > div > a {
+    text-decoration: none;
+}
+
+
+/*
+ * Footer Styling
+ */
+footer {
+    border-top: 1px solid var(--border);
+}
+
+footer > div {
+    text-align: center;
+    padding: 20px;
+}
+
+footer > div > a {
+    color: var(--primary);
+    text-decoration: none;
+}
