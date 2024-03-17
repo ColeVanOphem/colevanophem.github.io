@@ -1,22 +1,24 @@
 :root {
     --text: #0f1224;
     --background: #f4f5fb;
-    --primary: #222d72;
-    --secondary: #6c7ee5;
+    --translucent-bg: #f4f5fb28;
+    --primary: #6c7ee5;
+    --secondary: #222d72;
     --accent: #102dd1;
     --border: #333333;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) { */
     :root {
         --text: #dcdff0;
         --background: #04050a;
+        --translucent-bg: #00000028;
         --primary: #8e99dd;
         --secondary: #1a2c93;
         --accent: #304df0;
         --border: #272727;
     }
-}
+/* } */
 
 html {
     scroll-behavior: smooth;
@@ -43,9 +45,62 @@ a:visited {
  * Section Styling
  */
 section {
-    margin: 0 auto;
+    margin: 1rem auto;
     max-width: 70%;
-    padding: 20px;
+    padding: 2.5rem;
+}
+
+#about {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 1rem;
+
+}
+
+.about-grid > img {
+    height: 25vw;
+    width: 25vw;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    justify-self: right;
+}
+
+#education {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+.m-container {
+    
+    width: 34vw;
+    height: 34vw;
+    
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+#block-m {
+    height: 100%;
+    width: 100%;
+}
+
+#experience {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+#projects {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
 }
 
 /*
@@ -76,7 +131,7 @@ section {
     font-size: 5rem;
     
     color: var(--primary);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0px 0px 4px #000000; */
 }
 
 .scroll-indicator {
@@ -86,6 +141,13 @@ section {
     transform: translateX(-50%);
     font-size: 2em;
     color: var(--primary);
+}
+
+.scroll-offset {
+    display: block;
+    height: 3rem; /* Adjust this value based on the height of your navbar */
+    margin-top: -3rem; /* This should be the negative of the height */
+    visibility: hidden;
 }
 
 #hero-background {
@@ -108,7 +170,7 @@ header {
     width: 100%;
     z-index: 100;
     backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--translucent-bg);
 
     border-bottom: 1px solid var(--border);
 }
@@ -128,6 +190,7 @@ nav {
 }
 
 nav > div {
+    margin-right: 2rem;
     display: flex;
     gap: 2rem;
 }
@@ -136,12 +199,23 @@ nav > div > a {
     text-decoration: none;
 }
 
+.logo {
+    font-family: 'Fira Mono', monospace;
+    font-weight: 700;
+    font-style: normal;
+
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
 
 /*
  * Footer Styling
  */
 footer {
     border-top: 1px solid var(--border);
+    box-sizing: border-box;
+    margin: 0 -8px;
 }
 
 footer > div {
