@@ -91,7 +91,7 @@ class FlowFieldEffect {
             this.#ctx.clearRect(0, 0, this.#width, this.#height);
 
             this.radius += this.vr;
-            if(this.radius > 10 || this.radius < -10) {
+            if(this.radius > 15 || this.radius < -15) {
                 this.vr *= -1;
             }
             

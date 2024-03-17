@@ -79,6 +79,15 @@ section {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: var(--primary);
+}
+
 #hero-background {
     position: absolute;
     top: 0;
@@ -86,6 +95,7 @@ section {
     width: 100%;
     height: 100%;
     z-index: -1; /* This ensures the canvas stays behind the text */
+    border-bottom: 1px solid var(--border);
 }
 
 /*
