@@ -50,9 +50,9 @@
             </div>
             <div>    
                 <a href="#about-">About</a>
-                <a href="#education">Education</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
+                <a href="#education-">Education</a>
+                <a href="#experience-">Experience</a>
+                <a href="#projects-">Projects</a>
             </div>
         </nav>
     </header>
@@ -71,47 +71,217 @@
             <div class="about-grid">
                 <div>
                     <h2>About Me</h2>
-                    <p>
-                        I'm a software engineer with a passion for creating and developing
-                        software.<br>I have experience in backend web development. I'm always looking for new
-                        opportunities to learn and grow as an engineer.
-                    </p>
+                    <p>I'm a software engineer with a passion for creating and developing software, especially in the FinTech space.</p>
+                    <p>I have experience in backend web development with C# and Python, and am interested in branching out to new areas.</p>
+                    <p>I'm always looking for new opportunities to learn and grow as an engineer, so please feel free to reach out.</p>
                 </div>
-                <img src="profile.jpg" alt="Cole VanOphem">
+                <img src="profile.jpg" alt="portrait placeholder">
             </div>
         </section>
+        <div class="scroll-offset" id="education-"></div> <!-- Anchor for scrolling -->
         <section id="education">
-            <div id="block-container" class="m-container">
-                <canvas id="block-m"></canvas>
-            </div>
-            <div>
-                <h2>Education</h2>
-                <div>
-                    <h3>University of Michigan - Ann Arbor</h3>
-                    <p><i>Bachelor of Science, Computer Science</i></p>
-                    <p>August 2022 - December 2024</p>
+            <div class="education-umich">
+                <div id="block-container" class="m-container">
+                    <canvas id="block-m" alt="Flow Field Art of the Block M logo"></canvas>
+                </div>
+                <div class="education-history">
+                    <h2>Education</h2>
+                    <div>
+                        <h3>University of Michigan - Ann Arbor</h3>
+                        <p><i>Bachelor of Science, Computer Science</i></p>
+                        <p>August 2022 - present</p>
+                    </div>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 482</h3>
+                        <a href="https://os.eecs.umich.edu/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Intro to Operating Systems</p>
+                    <p></p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 485</h3>
+                        <a href="https://eecs485.org/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Web Systems</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 376</h3>
+                        <a href="https://eecs376.org/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Foundations of Computer Science</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 370</h3>
+                        <a href="https://eecs370.github.io/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Intro to Computer Organization</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 281</h3>
+                        <a href="https://eecs281staff.github.io/eecs281.org/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Data Structures and Algorithms</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 280</h3>
+                        <a href="https://eecs280.org/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Programming and Intro Data Structures</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 497</h3>
+                        <a href="https://bulletin.engin.umich.edu/courses/eecs/" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Human-Centered Software and Design and Development</p>
                 </div>
             </div>
         </section>
+        <div class="scroll-offset" id="experience-"></div> <!-- Anchor for scrolling -->
         <section id="experience">
             <h2>Experience</h2>
             <div>
                 <h3>Software Engineer Intern</h3>
-                <p>Company Name</p>
+                <p>United Wholesale Mortgage</p>
                 <p>May 2023 - August 2023</p>
                 <ul>
-                    <li>Developed a web application using React and Node.js</li>
-                    <li>Worked with a team to develop and maintain a RESTful API</li>
-                    <li>Implemented a CI/CD pipeline using Jenkins</li>
+                    <li>Developed containerized C#, ASP.NET Core microservice to aggregate up to 1.48 million Jira fields per day from
+                        scheduled RESTful API calls.</li>
+                    <li>Engineered microservice to support a machine learning model predicting and preventing code changes that
+                        could disrupt operations, mitigating the risk of service outages leading to lost loan origination.</li>
+                    <li>Deployed to Azure via Docker containers and integrated with Orkes Conductor.</li>
+                    <li>Collaborated in daily scrum meetings, sprint planning, and retrospectives within an agile team.</li>
+                    <li>Regularly presented to the product owner, stakeholders, and architects, incorporating valuable feedback.</li>
+                </ul>
+                <br>
+                <h3>Team Lead</h3>
+                <p>Michigan Hackers</p>
+                <p>May 2023 - present</p>
+                <ul>
+                    <li>Led weekly sessions to teach and review technical content, mainly focusing on data structures and algorithms.</li>
+                    <li>Developed and presented materials covering effective career strategies.</li>
                 </ul>
             </div>
         </section>
+        <div class="scroll-offset" id="projects-"></div> <!-- Anchor for scrolling -->
         <section id="projects">
             <h2>Projects</h2>
-            <div>
-                <h3>Project Name</h3>
-                <p>Project Description</p>
-                <p>Technologies Used: React, Node.js, MongoDB</p>
+            <div class="project-grid">
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>WolvWealth</h3>
+                        <a href="https://devpost.com/software/wolvwealth" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <img src="wolvwealth.png" alt="WolvWealth Homepage">
+                    </div>
+                    <p>Web application that provides users with a robust toolset for optimizing their investment portfolios.</p>
+                    <p>Runner-Up for Capital One's Best Financial Hack Award at MHacks.</p>
+                    <p>Technologies Used: React, TailwindCSS, Flask, SQLite</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>MichMoney</h3>
+                        <a href="https://devpost.com/software/michmoney" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <img src="michmoney.png" alt="MichMoney Forex Page">
+                    </div>
+                    <p>Web platform that provides users with actionable insights into earnings calls and Forex opportunities.</p>
+                    <p>Winner of Best Use of Digital Currency Award at SpartaHack</p>
+                    <p>Technologies Used: React, TailwindCSS, Flask, SQLite</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>Thread Library</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 482</p>
+                    </div>
+                    <p>C++17 library to administer the creation, lifetime, and execution of concurrent threads in a multicore system.</p>
+                    <p>Supports condition variables, mutexes, yields, joins, and interprocess interrupts (IPI).</p>
+                    <p>Technologies Used: C++17, clang, CMake, Linux</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>Disk Pager</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 482</p>
+                    </div>
+                    <p>Multithreaded C++17 program to schedule concurrent disk requests using monitors.</p>
+                    <p>Implemented thread-safe concurrent priority queue to manage disk requests based on shortest seek time first (SSTF) algorithm.</p>
+                    <p>Technologies Used: C++17, Clang, CMake</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>Full-Stack Social Media Website</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 485</p>
+                    </div>
+                    <p>Social media site that allows users to share photos with others, and comment on posts.</p>
+                    <p>Features dynamic user interface made with React, and RESTful API made with Flask enabling like, comment, post, authentication, and account management functionalities.</p>
+                    <p>Technologies Used: React, JavaScript, Flask, Python, SQLite</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>SQL Clone</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 281</p>
+                    </div>
+                    <p>Program to emulate a basic relational database using STL containers and algorithms.</p>
+                    <p>Implemented a subset of SQL commands to create and manipulate tables, including JOIN and conditional statements.</p>
+                    <p>Technologies Used: C++11</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>Stock Market Simulator</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 281</p>
+                    </div>
+                    <p>Program to simulate buy and sell orders from multiple traders on multiple stocks in a market.</p>
+                    <p>Utilized priority queues to match buyers and sellers. Implemented multiple data analysis modes to calculate performance of traders and stocks at end of day.</p>
+                    <p>Technologies Used: C++11</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>3D Maze Solver</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 281</p>
+                    </div>
+                    <p>Program to solve 3-dimensional mazes with multiple types of obstacles.</p>
+                    <p>Uses breadth-first search or depth-first search to find a path through the maze, given a start and end point.</p>
+                    <p>Technologies Used: C++11</p>
+                </div>
+                <div class="project-box">
+                    <div class="project-title">
+                        <h3>Piazza Post Classifier</h3>
+                        <a href="#" target="_blank"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="img-container">
+                        <p>EECS 280</p>
+                    </div>
+                    <p>Program to predict the topic of Piazza forum posts using a naive Bayes classifier.</p>
+                    <p>Trained on data set of over 11,000 posts and achieved over 87% prediction accuracy while classifying posts.</p>
+                    <p>Technologies Used: C++11</p>
+                </div>
             </div>
         </section>
     </main>

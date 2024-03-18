@@ -163,10 +163,10 @@ class Particle {
         this.y = Math.floor(Math.random() * this.m_effect.height);
         
         this.r = 0;
-        this.g = 0;
-        this.b = 0;
+        this.g = 39;
+        this.b = 76;
         this.color = `rgb(${this.r}, ${this.g}, ${this.b})`;
-        this.strokeWidth = Math.floor(Math.random() * 4 + 1);
+        this.strokeWidth = Math.floor(Math.random() * 4 + 2);
         
         this.dx;
         this.dy;

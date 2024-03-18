@@ -50,6 +50,10 @@ section {
     padding: 2.5rem;
 }
 
+p {
+    line-height: 1.5;
+}
+
 #about {
     border: 1px solid var(--border);
     border-radius: 0.75rem;
@@ -71,21 +75,118 @@ section {
 }
 
 #education {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+
     
     border: 1px solid var(--border);
     border-radius: 0.75rem;
 }
 
-.m-container {
+.education-umich {
+    width: 100%;
+
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "canvas canvas education education"
+                         "canvas canvas course1 course2"
+                         "course3 course4 course5 course6"
+                         "course7 course8 course9 course10";
     
-    width: 34vw;
-    height: 34vw;
+    
+}
+
+@media (max-width: 60rem) {
+    .education-umich {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "canvas"
+            "education"
+            "course1"
+            "course2"
+            "course3"
+            "course4"
+            "course5"
+            "course6"
+            "course7"
+            "course8"
+            "course9"
+            "course10";
+    }
+}
+
+.education-history {
+    padding: 1.5rem;
+    grid-area: education;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+.course-box {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.course-box > h3 {
+    margin: 0;
+}
+
+.course-title {
+    margin: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.course-title > h3 {
+    margin: 0;
+    margin-bottom: 0.4rem;
+}
+
+.course-title > a {
+    margin: 0;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.course-box > p {
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.m-container {
+    grid-area: canvas;
+    grid-column: span 2;
+
+    /* width: 34vw; */
+    /* height: 34vw; */
+    position: relative;
+    overflow: hidden;
     
     border: 1px solid var(--border);
     border-radius: 0.75rem;
+}
+
+@media (max-width: 60rem) {
+    .m-container {
+        grid-column: span 1; /* Take up the whole column when the page narrows */
+    }
+}
+
+.m-container::before {
+    content: "";
+    display: block;
+    padding-bottom: 100%; /* Equal to width for a 1:1 aspect ratio */
+}
+
+.m-container > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 #block-m {
@@ -101,6 +202,47 @@ section {
 #projects {
     border: 1px solid var(--border);
     border-radius: 0.75rem;
+}
+
+.project-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+
+}
+
+.project-box {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.project-title {
+    margin: 0;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}    
+    
+.project-title > h3 {
+    margin: 0;
+}
+
+.img-container {
+    margin: 0 auto;
+    margin-top: 1rem;
+
+    height: 15rem;
+    border-radius: 0.75rem;
+}
+
+.img-container > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.75rem;
+
 }
 
 /*
