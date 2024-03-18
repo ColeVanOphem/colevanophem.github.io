@@ -36,6 +36,14 @@ window.onload = function() {
     m_effect = new Effect(m_canvas.height, m_canvas.width);
     m_effect.render(m_ctx);
     m_effect.animate(0);
+
+    // Hamburger Menu:
+    const hamburgerButton = document.querySelector('#hamburger-button');
+    const hamburgerLinks = document.querySelector('#hamburger-links');
+
+    hamburgerButton.addEventListener('click', () => {
+        hamburgerLinks.classList.toggle('active');
+    });
 }
 
 window.addEventListener('resize', function() {
