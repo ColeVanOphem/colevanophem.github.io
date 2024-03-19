@@ -376,6 +376,7 @@ nav > div > a {
 #hamburger-button {
     display: none;
     cursor: pointer;
+    color: var(--primary);
 }
 
 #hamburger-links {
