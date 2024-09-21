@@ -53,14 +53,14 @@
             </div>
             <div id="hamburger-links">
                 <a href="#about-">About</a>
-                <a href="#education-">Education</a>
                 <a href="#experience-">Experience</a>
+                <a href="#education-">Education</a>
                 <a href="#projects-">Projects</a>
             </div>
             <div id="nav-links">    
                 <a href="#about-">About</a>
-                <a href="#education-">Education</a>
                 <a href="#experience-">Experience</a>
+                <a href="#education-">Education</a>
                 <a href="#projects-">Projects</a>
             </div>
         </nav>
@@ -87,6 +87,37 @@
                 <img src="profile.jpg" alt="portrait placeholder">
             </div>
         </section>
+        <div class="scroll-offset" id="experience-"></div> <!-- Anchor for scrolling -->
+        <section id="experience">
+            <h2>Experience</h2>
+            <div>
+                <h3>Software Engineer Intern</h3>
+                <p>OneStream</p>
+                <p>June 2024 - August 2024</p>
+                <ul>
+                    <li>Worked on the Cloud Development Team to improve reliability of email notifications from 
+                        OneStream customer cloud environments.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Software Engineer Intern</h3>
+                <p>United Wholesale Mortgage</p>
+                <p>May 2023 - August 2023</p>
+                <ul>
+                    <li>Worked on Application Development Team to build a big data processing service that will be used 
+                        to train models that identify code changes likely to cause defects.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Team Lead</h3>
+                <p>Michigan Hackers</p>
+                <p>May 2023 - present</p>
+                <ul>
+                    <li>Led weekly classes to teach and review technical content, mainly focusing on data structures and algorithms in C++</li>
+                    <li>Developed additional featured content to prepare members for the non-technical portions of career readiness</li>
+                </ul>
+            </div>
+        </section>
         <div class="scroll-offset" id="education-"></div> <!-- Anchor for scrolling -->
         <section id="education">
             <div class="education-umich">
@@ -103,10 +134,24 @@
                 </div>
                 <div class="course-box">
                     <div class="course-title">
+                        <h3>EECS 281</h3>
+                        <a href="https://eecs281staff.github.io/eecs281.org/" target="_blank" alt="EECS 281 course website"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Data Structures and Algorithms</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 491</h3>
+                        <a href="https://github.com/umich-distsys" target="_blank" alt="EECS 491 GitHub Organization"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Distributed Systems</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
                         <h3>EECS 482</h3>
                         <a href="https://web.eecs.umich.edu/~harshavm/eecs482/" target="_blank" alt="EECS 482 course website"><i class="fas fa-info-circle"></i></a>
                     </div>
-                    <p>Intro to Operating Systems</p>
+                    <p>Operating Systems</p>
                     <p></p>
                 </div>
                 <div class="course-box">
@@ -115,6 +160,13 @@
                         <a href="https://eecs485.org/" target="_blank" alt="EECS 485 course website"><i class="fas fa-info-circle"></i></a>
                     </div>
                     <p>Web Systems</p>
+                </div>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>EECS 489</h3>
+                        <a href="http://www.eecs489.org/" target="_blank" alt="Michigan Engineering course descriptions"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Computer Networks</p>
                 </div>
                 <div class="course-box">
                     <div class="course-title">
@@ -128,14 +180,7 @@
                         <h3>EECS 370</h3>
                         <a href="https://eecs370.github.io/" target="_blank" alt="EECS 370 course website"><i class="fas fa-info-circle"></i></a>
                     </div>
-                    <p>Intro to Computer Organization</p>
-                </div>
-                <div class="course-box">
-                    <div class="course-title">
-                        <h3>EECS 281</h3>
-                        <a href="https://eecs281staff.github.io/eecs281.org/" target="_blank" alt="EECS 281 course website"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                    <p>Data Structures and Algorithms</p>
+                    <p>Computer Organization</p>
                 </div>
                 <div class="course-box">
                     <div class="course-title">
@@ -151,41 +196,13 @@
                     </div>
                     <p>Human-Centered Software and Design and Development</p>
                 </div>
-            </div>
-        </section>
-        <div class="scroll-offset" id="experience-"></div> <!-- Anchor for scrolling -->
-        <section id="experience">
-            <h2>Experience</h2>
-            <div>
-                <h3>Software Engineer Intern</h3>
-                <p>OneStream</p>
-                <p>June 2024 - August 2024</p>
-                <ul>
-                    <li>Architected and implemented a high-performance Email Gateway Service using Azure Functions and C#/.NET,
-                        capable of processing up to 1 million messages per day, to optimize email notification delivery and reducing bounce rates by 80%</li>
-                    <li>Engineered an innovative claim-check token system leveraging Azure Service Bus and Storage Blobs, reducing message
-                        payload size by up to 90% while enabling support for large attachments and improving overall system reliability</li>
-                </ul>
-            </div>
-            <div>
-                <h3>Software Engineer Intern</h3>
-                <p>United Wholesale Mortgage</p>
-                <p>May 2023 - August 2023</p>
-                <ul>
-                    <li>Developed microservice as part of a team led by VP of Architecture to identify code changes that cause downtime and
-                        impact loan origination, potentially mitigating up to $400,000 in lost revenue</li>
-                    <li>Created ASP.NET Core microservice in C# and .NET Core to aggregate and store up to 1.5M Jira fields per day from
-                        scheduled REST API calls, utilizing SQL Server via Entity Framework Core for data storage</li>
-                    <li>Deployed the microservice to Azure using Docker containers and integrated it with Orkes Conductor for orchestration</li>
-                </ul>
-                <br>
-                <h3>Team Lead</h3>
-                <p>Michigan Hackers</p>
-                <p>May 2023 - present</p>
-                <ul>
-                    <li>Led weekly classes to teach and review technical content, mainly focusing on data structures and algorithms in C++</li>
-                    <li>Developed additional featured content to prepare members for the non-technical portions of career readiness</li>
-                </ul>
+                <div class="course-box">
+                    <div class="course-title">
+                        <h3>MATH 217</h3>
+                        <a href="https://lsa.umich.edu/math/undergraduates/undergraduate-math-courses/200-level-math-courses.html/" target="_blank" alt="Michigan Mathematics 200-level course descriptions"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <p>Linear Algebra</p>
+                </div>
             </div>
         </section>
         <div class="scroll-offset" id="projects-"></div> <!-- Anchor for scrolling -->
