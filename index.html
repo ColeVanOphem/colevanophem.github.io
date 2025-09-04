@@ -26,7 +26,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <script src="index.js"></script>
+    <script type="importmap">
+    {
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@<version>/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@<version>/examples/jsm/"
+    }
+    }
+    </script>
+    <script type="module" src="index.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D51X2SFZL5"></script>
@@ -42,6 +50,7 @@
 </head>
 
 <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
     <header>
         <nav>
             <div>
@@ -58,13 +67,11 @@
     </header>
     <main>
         <section class="hero">
-            <canvas id="hero-background"></canvas>
             <div class="hero-text">
                 <p>Hello, my name is</p>
                 <h1>Cole VanOphem</h1>
                 <p>and I'm a software engineer.</p>
             </div>
-            <a href="#about-"><i class="fa-solid fa-circle-chevron-down scroll-indicator"></i></a>
         </section>
         <div class="scroll-offset" id="about-"></div> <!-- Anchor for scrolling -->
         <section id="about">

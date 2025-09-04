@@ -22,7 +22,6 @@
 
 html {
     scroll-behavior: smooth;
-
 }
 
 body {
@@ -292,14 +291,14 @@ p {
     visibility: hidden;
 }
 
-#hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* This ensures the canvas stays behind the text */
-    border-bottom: 1px solid var(--border);
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* This (allegedly) ensures the canvas stays behind the text */
+    pointer-events: none;
+    border: none;
 }
 
 /*
