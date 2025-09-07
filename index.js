@@ -14,10 +14,74 @@ window.addEventListener('resize', resize);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 2000);
+
+// --- Framing + zoom helpers ---
+function lerp(a, b, t) { return a + (b - a) * t; }
+// nice S-curve: starts gentle, ends gentle
+function easeInOut(t) { return t * t * (3 - 2 * t); } 
+
+// f = 0 center; f = 1 puts origin at the right edge
+// zoom = 1 keeps your base FOV; <1 zooms out; >1 zooms in
+function setFraming({ fractionRight = 0.0, zoom = 1.0 }) {
+  const W = renderer.domElement.clientWidth;
+  const H = renderer.domElement.clientHeight;
+
+  const offsetX = -(W * 0.5 * fractionRight);
+  camera.setViewOffset(W, H, offsetX, 0, W, H);
+
+  const baseFov = 55;              // your starting FOV
+  camera.fov = baseFov / zoom;     // zoom<1 => larger FOV (zoomed out)
+  camera.updateProjectionMatrix();
+}
+
 camera.position.set(0, 18, 32);
 camera.lookAt(0, 0, 0);
-
 resize();
+
+// --- Scroll-driven composition ---
+let heroHeight = 0;
+
+// Start state (at page load)
+const START_FRAC = 0.20; // 20% from center toward right edge
+const START_ZOOM = 0.92; // slightly zoomed out
+// End state (post-hero)
+const END_FRAC = 0.00;   // centered
+const END_ZOOM = 1.00;   // base zoom
+
+// Cache the hero height for our mapping
+function measureHero() {
+  const heroEl = document.querySelector('.hero');
+  heroHeight = heroEl ? heroEl.getBoundingClientRect().height : window.innerHeight;
+}
+measureHero();
+
+let scrollRafPending = false;
+function onScroll() {
+  if (!scrollRafPending) {
+    scrollRafPending = true;
+    requestAnimationFrame(applyScrollFraming);
+  }
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
+function applyScrollFraming() {
+  scrollRafPending = false;
+
+  // Progress through the hero: 0 at top, 1 near the end of hero
+  const y = window.scrollY || window.pageYOffset || 0;
+  const range = heroHeight * 0.8; // end a bit before hero ends
+  let t = Math.max(0, Math.min(1, y / Math.max(1, range))); // clamp 0..1
+  t = easeInOut(t);
+
+  const f = lerp(START_FRAC, END_FRAC, t);
+  const z = lerp(START_ZOOM, END_ZOOM, t);
+
+  setFraming({ fractionRight: f, zoom: z });
+}
+
+// After you create your camera and run your initial resize:
+setFraming({ fractionRight: START_FRAC, zoom: START_ZOOM });
+applyScrollFraming(); // ensures consistent on refresh-at-offset
 
 // --- Starfield (sparse white points) ---
 // Replaces previous "makeStarfield" code

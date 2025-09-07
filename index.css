@@ -49,6 +49,11 @@ section {
     padding: 2.5rem;
 }
 
+.blur {
+    background: var(--translucent-bg);
+    backdrop-filter: blur(10px);
+}
+
 p {
     line-height: 1.5;
 }
