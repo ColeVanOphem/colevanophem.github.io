@@ -429,6 +429,97 @@ const starship = makeSimpleStarship();
 starship.up.set(0, 1, 0);
 scene.add(starship);
 
+// --- Visualize Starship's transfer orbit ---
+function makeTransferOrbitLine({
+  segments = 512,           // sampling resolution
+  color = 0x8e99dd,         // subtle bluish line
+  opacity = 0.28,           // faint so it doesn't steal focus
+  y = 1.0,                  // same slight Y lift you use in hohmannPosition
+  dashed = false,           // set true for dashed
+  dashSize = 2.2,
+  gapSize  = 1.4,
+} = {}) {
+  // Sample the same ellipse: r(θ) = p / (1 + e cos θ)
+  const positions = new Float32Array((segments + 1) * 3);
+  for (let i = 0; i <= segments; i++) {
+    const t = (i / segments) * Math.PI * 2;
+    const r = p / (1 + e * Math.cos(t));
+    const x = r * Math.cos(t);
+    const z = r * Math.sin(t);
+    const idx = i * 3;
+    positions[idx + 0] = x;
+    positions[idx + 1] = y;   // float slightly above y=0 for readability
+    positions[idx + 2] = z;
+  }
+
+  const geom = new THREE.BufferGeometry();
+  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  let mat;
+  if (dashed) {
+    mat = new THREE.LineDashedMaterial({
+      color,
+      transparent: true,
+      opacity,
+      dashSize,
+      gapSize,
+    });
+  } else {
+    mat = new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity,
+    });
+  }
+
+  // Use Line (open poly) but close it by duplicating the first point (we did above).
+  const line = new THREE.Line(geom, mat);
+  line.renderOrder = -0.5;    // render early (still respects depth)
+  line.frustumCulled = true;
+
+  if (dashed) {
+    // Required for dashed lines to compute segment distances
+    line.computeLineDistances();
+  }
+
+  return line;
+}
+
+const transferOrbit = makeTransferOrbitLine({
+  // dashed: true, // uncomment if you prefer dashed
+  // dashSize: 2.0,
+  // gapSize:  1.2,
+  y: 1.0,                // matches hohmannPosition's y
+  color: 0x8e99dd,
+  opacity: 0.28,
+});
+scene.add(transferOrbit);
+
+// --- Apoapsis / Periapsis markers ---
+const rp = p / (1 + e); // periapsis radius
+const ra = p / (1 - e); // apoapsis radius
+
+// Material (slightly translucent)
+const markerMat = new THREE.MeshBasicMaterial({
+  color: 0x8e99dd,
+  transparent: true,
+  opacity: 0.55,
+});
+
+// Geometry (tiny sphere)
+const markerGeo = new THREE.SphereGeometry(0.08, 16, 16);
+
+// Periapsis at +X
+const periapsisMarker = new THREE.Mesh(markerGeo, markerMat.clone());
+periapsisMarker.position.set(rp, 1.0, 0);
+scene.add(periapsisMarker);
+
+// Apoapsis at -X
+const apoapsisMarker = new THREE.Mesh(markerGeo, markerMat.clone());
+apoapsisMarker.material.opacity = 0.35; // make it a bit fainter
+apoapsisMarker.position.set(-ra, 1.0, 0);
+scene.add(apoapsisMarker);
+
 function updateStarship(dt) {
   // Areal velocity: r^2 * dθ/dt = const  => dθ/dt ∝ 1/r^2
   const rNow = p / (1 + e * Math.cos(theta));
