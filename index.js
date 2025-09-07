@@ -271,74 +271,6 @@ const mars = makePlanet({
 
 const planets = [mercury, venus, earth, mars];
 
-// --- Warped Grid (fake GR well): z-displacement = Σ strength / (distance^2 + softness) ---
-/*
- We implement the warp on the CPU side by modifying the grid’s position attribute each frame.
- For a 160x160 grid this is still very fast and easy to read/tweak. If you want even smoother,
- we can switch to a custom vertex shader later.
-*/
-const GRID_SIZE = 100;      // world units across
-const SUBDIV = 160;         // grid resolution (increase for smoother warp)
-const gridGeom = new THREE.PlaneGeometry(GRID_SIZE, GRID_SIZE, SUBDIV, SUBDIV);
-gridGeom.rotateX(-Math.PI / 2); // lay flat (X-Z plane)
-const gridMat = new THREE.MeshBasicMaterial({
-  color: 0x8e99dd,
-  wireframe: true,
-  transparent: true,
-  opacity: 0.25,
-});
-const grid = new THREE.Mesh(gridGeom, gridMat);
-grid.position.y = -6;            // drop below content so warp dips downward
-grid.rotation.y = Math.PI * 0.06; // angled a bit for perspective flair
-scene.add(grid);
-
-// Prepare original (unwarped) positions for fast updates
-const basePos = gridGeom.attributes.position.array.slice();
-
-// Simple warp function parameters
-const wells = [
-  // Optional: a *very* gentle Sun well so the mesh dips slightly at center
-  { pos: () => new THREE.Vector2(0, 0), strength: 14.0 },
-
-  // Planet wells (lighter than before so they don't crater the grid)
-  { pos: () => new THREE.Vector2(mercury.position.x, mercury.position.z), strength: 9.0 },
-  { pos: () => new THREE.Vector2(venus.position.x,   venus.position.z),   strength: 12.0 },
-  { pos: () => new THREE.Vector2(earth.position.x,   earth.position.z),   strength: 14.0 },
-  { pos: () => new THREE.Vector2(mars.position.x,    mars.position.z),    strength: 11.0 },
-];
-
-const softness = 18.0;  // gentler falloff
-const maxDepth = 8.0;   // clamp displacement
-
-function applyWarp(dt) {
-  const arr = gridGeom.attributes.position.array;
-  for (let i = 0; i < arr.length; i += 3) {
-    const x = basePos[i + 0];
-    const y = basePos[i + 1];
-    const z = basePos[i + 2];
-
-    // Only displace vertical (y) because plane is rotated to XZ; y is up
-    // Compute displacement as the sum of wells based on X/Z distance
-    const px = x;
-    const pz = z;
-    let disp = 0.0;
-    for (const w of wells) {
-      const dx = px - w.pos.x;
-      const dz = pz - w.pos.y; // (y component of Vector2 holds Z)
-      const r2 = dx * dx + dz * dz;
-      disp -= w.strength / (r2 + softness); // negative to "dip" downward
-    }
-    // Clamp so it never gets too deep
-    const yWarped = Math.max(y + disp, y - maxDepth);
-
-    arr[i + 0] = x;
-    arr[i + 1] = yWarped;
-    arr[i + 2] = z;
-  }
-  gridGeom.attributes.position.needsUpdate = true;
-  gridGeom.computeVertexNormals();
-}
-
 // --- Subtle mouse parallax ---
 const mouse = new THREE.Vector2(0, 0);
 window.addEventListener('mousemove', (e) => {
@@ -356,37 +288,196 @@ function updateParallax(dt) {
   camera.lookAt(0, 0, 0);
 }
 
+// --- Minimal Starship with ogive (+ flaps) ---
+
+// === Hinged flap helper ===
+// Hinge axis is vertical (Y). Flap area lies in the XZ plane.
+// The inner edge (hinge) sits exactly on the hull at x = ±bodyRadius.
+// 'outboardX' = how far the flap sticks out from the hull.
+// 'chordZ'    = fore–aft length.
+// 'thicknessY' = very thin vertical thickness.
+function makeHingedFlap({
+  side,           // 'L' or 'R'
+  y, z,           // placement on the hull
+  outboardX,      // extent out from hull (X)
+  chordZ,         // fore–aft length (Z)
+  thicknessY = 0.035, // THIN (vertical)
+  deflectDeg = 0, // initial feather angle (rotate about Y)
+  mat,
+  bodyRadius
+}) {
+  // Box: (X = outboard), (Y = THIN), (Z = chord) -> plane is XZ
+  const geo = new THREE.BoxGeometry(outboardX, thicknessY, chordZ);
+
+  // Move origin to the inboard X edge so the hinge line is at x = 0
+  if (side === 'R') {
+    geo.translate(+outboardX / 2, 0, 0); // mass extends toward +X
+  } else {
+    geo.translate(-outboardX / 2, 0, 0); // mass extends toward -X
+  }
+
+  const flap = new THREE.Mesh(geo, mat);
+  flap.material.side = THREE.DoubleSide;
+
+  // Put hinge exactly on the body skin
+  const x = (side === 'R') ? +bodyRadius : -bodyRadius;
+  flap.position.set(x, y, z);
+
+  // Feather around vertical hinge (Y axis)
+  const sgn = (side === 'R') ? +1 : -1;
+  flap.rotation.y = THREE.MathUtils.degToRad(sgn * deflectDeg);
+
+  return flap;
+}
+
+// --- Minimal Starship with ogive (+ hinged flaps) ---
+function makeSimpleStarship({ scale = 0.4 } = {}) {
+  const ship = new THREE.Group();
+
+  // Body aligned to Z
+  const BODY_R   = 0.42;
+  const BODY_LEN = 3.2;
+
+  const bodyGeo = new THREE.CylinderGeometry(BODY_R, BODY_R, BODY_LEN, 12);
+  bodyGeo.rotateX(Math.PI / 2); // Y -> Z
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.6, roughness: 0.5 });
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  ship.add(body);
+
+  // Ogive (tip forward into -Z)
+  const NOSE_LEN = 0.9;
+  const noseGeo = new THREE.ConeGeometry(BODY_R, NOSE_LEN, 20, 1, false);
+  noseGeo.rotateX(-Math.PI / 2); // tip -> -Z
+  const nose = new THREE.Mesh(
+    noseGeo,
+    new THREE.MeshStandardMaterial({ color: 0xb9bfcf, metalness: 0.55, roughness: 0.45 })
+  );
+  nose.position.z = -(BODY_LEN / 2) - (NOSE_LEN / 2);
+  ship.add(nose);
+
+  // --- Flaps (thin plates sticking straight out) ---
+  const flapMat = new THREE.MeshStandardMaterial({ color: 0x9ea5b6, metalness: 0.5, roughness: 0.5 });
+
+  // Forward flaps (near the nose)
+  const fCfg = {
+    outX: 0.35,   // sticks out from hull
+    chord: 0.50,  // fore–aft
+    thinY: 0.035, // very thin vertically
+    z: -1.20,
+    y: 0.15,
+    defl: 12
+  };
+  const fFlapL = makeHingedFlap({ side: 'L', y: fCfg.y, z: fCfg.z, outboardX: fCfg.outX, chordZ: fCfg.chord, thicknessY: fCfg.thinY, deflectDeg: fCfg.defl, mat: flapMat, bodyRadius: BODY_R });
+  const fFlapR = makeHingedFlap({ side: 'R', y: fCfg.y, z: fCfg.z, outboardX: fCfg.outX, chordZ: fCfg.chord, thicknessY: fCfg.thinY, deflectDeg: fCfg.defl, mat: flapMat, bodyRadius: BODY_R });
+  ship.add(fFlapL, fFlapR);
+
+  // Aft flaps (near the tail)
+  const aCfg = {
+    outX: 0.30,
+    chord: 0.98,
+    thinY: 0.04,
+    z: 1.00,
+    y: -0.05,
+    defl: 0
+  };
+  const aFlapL = makeHingedFlap({ side: 'L', y: aCfg.y, z: aCfg.z, outboardX: aCfg.outX, chordZ: aCfg.chord, thicknessY: aCfg.thinY, deflectDeg: aCfg.defl, mat: flapMat, bodyRadius: BODY_R });
+  const aFlapR = makeHingedFlap({ side: 'R', y: aCfg.y, z: aCfg.z, outboardX: aCfg.outX, chordZ: aCfg.chord, thicknessY: aCfg.thinY, deflectDeg: aCfg.defl, mat: flapMat, bodyRadius: BODY_R });
+  ship.add(aFlapL, aFlapR);
+
+  // Plumes at +Z (aft), pointing +Z (unchanged)
+  const plumeColors = [0xff8030, 0x40a0ff];
+  const plumeGeo = new THREE.ConeGeometry(0.15, 0.5, 5, 1, true);
+  plumeGeo.rotateX(-Math.PI / 2);
+  plumeColors.forEach((color, i) => {
+    const plume = new THREE.Mesh(
+      plumeGeo,
+      new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.7, transparent: true, opacity: 0.85, roughness: 0.4 })
+    );
+    plume.position.set((i - 0.5) * 0.28, -0.05, +1.8);
+    ship.add(plume);
+  });
+
+  ship.scale.setScalar(scale);
+  return ship;
+}
+
+
+// --- Hohmann-style transfer ellipse (Earth<->Mars), in the XZ plane ---
+
+// Radii from your planet data (in world units)
+const r1 = earth.userData.orbitR;   // ~ 1.0 AU * AU
+const r2 = mars.userData.orbitR;    // ~ 1.52 AU * AU
+
+// Ellipse params: periapsis=r1, apoapsis=r2, Sun at one focus (the origin)
+const a = (r1 + r2) / 2;                            // semi-major axis
+const e = (r2 - r1) / (r2 + r1);                    // eccentricity
+const b = a * Math.sqrt(1 - e * e);                 // semi-minor axis
+const p = a * (1 - e * e);                          // semi-latus rectum
+
+// Angle along the ellipse (true anomaly). We'll speed up near periapsis using Kepler's 2nd law.
+let theta = 0;              // 0 at periapsis on +X; pi at apoapsis on -X
+const baseAngular = 0.18;   // base radians/sec; tune to taste
+
+function hohmannPosition(t) {
+  // r(θ) = p / (1 + e cos θ)
+  const r = p / (1 + e * Math.cos(t));
+  // Position in XZ plane (slight Y to float above grid)
+  return new THREE.Vector3(r * Math.cos(t), 1.0, r * Math.sin(t));
+}
+
+const starship = makeSimpleStarship();
+starship.up.set(0, 1, 0);
+scene.add(starship);
+
+function updateStarship(dt) {
+  // Areal velocity: r^2 * dθ/dt = const  => dθ/dt ∝ 1/r^2
+  const rNow = p / (1 + e * Math.cos(theta));
+  const dtheta = baseAngular * dt * (a * a / (rNow * rNow));
+  theta = (theta + dtheta) % (Math.PI * 2);
+
+  const pos = hohmannPosition(theta);
+  const posAhead = hohmannPosition(theta + 0.002); // small look-ahead
+
+  // Move and orient: Three.js lookAt points -Z toward target.
+  starship.position.copy(pos);
+  const m = new THREE.Matrix4().lookAt(starship.position, posAhead, starship.up);
+  starship.quaternion.setFromRotationMatrix(m);
+
+  // Tiny style roll
+  starship.rotateZ(Math.sin(performance.now() * 0.001) * 0.002);
+}
+
+// Planet spins
+function updateOrbits(dt) {
+  simTime += dt;
+
+  for (const p of planets) {
+      const { orbitR, omega, phase, selfSpin } = p.userData;
+      const angle = omega * simTime + phase;
+      p.position.set(
+          Math.cos(angle) * orbitR,
+          0,
+          Math.sin(angle) * orbitR
+      );
+      p.rotation.y += selfSpin;      // slow spin
+  }
+}
+
 // --- Animation loop ---
 let last = performance.now();
+let simTime = 0; // seconds in our "solar system time"
 function tick(now = performance.now()) {
   const dt = Math.min((now - last) / 1000, 0.033); // clamp delta
   last = now;
 
-  // Planet spins
-  let simTime = 0; // seconds in our "solar system time"
-  function updateOrbits(dt) {
-    simTime += dt;
-
-    for (const p of planets) {
-        const { orbitR, omega, phase, selfSpin } = p.userData;
-        const angle = omega * simTime + phase;
-        p.position.set(
-            Math.cos(angle) * orbitR,
-            0,
-            Math.sin(angle) * orbitR
-        );
-        p.rotation.y += selfSpin;      // slow spin
-    }
-  }
-
   // Slow orbits to make the warp "breathe"
   updateOrbits(dt);
 
-  // Update grid warp
-  applyWarp(dt);
-
   // Mouse parallax
   updateParallax(dt);
+
+  // Move Starship along its path through the orbiting planets
+  updateStarship(dt);
 
   renderer.render(scene, camera);
   requestAnimationFrame(tick);
