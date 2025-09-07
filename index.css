@@ -54,6 +54,11 @@ section {
     backdrop-filter: blur(10px);
 }
 
+.spacer {
+    height: 50vh;
+    width: 100vw;
+}
+
 p {
     line-height: 1.5;
 }
